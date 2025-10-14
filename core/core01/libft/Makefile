@@ -67,7 +67,7 @@ ctest:
 
 test: $(TEST_OBJECT_FILES) | all
 	$(CC) $(TEST_ROOT)  $(CFLAGS) -g -o $(TEST_ROOT)test.out -L. -lft
-	gdb $(TEST_ROOT)test.out
+	
 
 $(TEST_ROOT)%.o: $(SOURCE_ROOT)%.c
 	$(CC) -c $^  $(CFLAGS) -g -o $@
