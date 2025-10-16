@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+make re
+make test
+for var in "$@"
+do
+	./tests_bin/ft_"$var"_test.out ./corpus_dir ./seeds -fork=3 -artifact_prefix="$var"_  -exact_artifact_path=./artifacts/$var -max_total_time=30
+done
+cd ..
+make fclean
+norminette ft_$1.c
