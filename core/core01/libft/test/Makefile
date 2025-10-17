@@ -2,10 +2,16 @@ CC=clang
 CFLAGS += -Wall -Werror -Wextra -g 
 NAME = tests/libtest.a
 
-LIBC_FUNCTION_NAMES = isalpha \
-					  isalnum 
-
-			
+LIBC_FUNCTION_NAMES = isalpha 	\
+					  isalnum 	\
+					  isdigit 	\
+					  isascii 	\
+					  isprint 	\
+					  toupper 	\
+					  tolower 	\
+					  strlen  	\
+					  strlcpy	\
+					  strlcat
 
 
 FT_FUNCTION_NAMES = nothing
@@ -46,11 +52,16 @@ fclean: clean
 clean: 
 	rm -f $(OBJECT_FILES)
 
-test: $(TEST_BIN_FILES) 
+test: all | $(TEST_BIN_FILES)  $(TEST_FILES) 
 
-tests_bin/%.out: $(TEST_FILES)| all
-	$(CC) -g -fsanitize=address,fuzzer  $< -o $@  -Ltests/ -ltest
+tests_bin/%_test.out: $(TESTS_ROOT)%_test.c
+	$(CC) -g -fsanitize=address,fuzzer  tests/$*_test.c -o $@  -Ltests/ -ltest -lbsd
 
+full:
+	./try $(FUNCTION_NAMES)
+
+simple_test:
+	cc -g tests/test.c -o $(TESTS_BIN_ROOT)/simple_test.out -Ltests/ -ltest
 
 $(TESTS_ROOT)%_test.c: 
 	touch .$^/$@

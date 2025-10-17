@@ -3,8 +3,7 @@ make re
 make test
 for var in "$@"
 do
-	./tests_bin/ft_"$var"_test.out ./corpus_dir ./seeds -fork=3 -artifact_prefix="$var"_  -exact_artifact_path=./artifacts/$var -max_total_time=30
+	./tests_bin/ft_"$var"_test.out ./corpus_dir ./seeds -fork=5 -artifact_prefix="$var"_  -exact_artifact_path=./artifacts/$var -max_total_time=5 #2>&1 | grep ERROR -i
+	norminette ../ft_$var.c
 done
-cd ..
 make fclean
-norminette ft_$1.c
