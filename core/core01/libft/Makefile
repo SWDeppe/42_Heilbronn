@@ -38,7 +38,7 @@ TEST_OBJECT_FILES = $(addprefix $(TEST_ROOT), $(FUNCTION_NAMES:%=ft_%.o))
 
 all: $(NAME)
 
-re:	$(NAME) | fclean
+re:	fclean | $(NAME)
 
 
 

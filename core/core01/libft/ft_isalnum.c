@@ -6,7 +6,7 @@
 /*   By: sdeppe <sdeppe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 09:52:40 by sdeppe            #+#    #+#             */
-/*   Updated: 2025/10/12 10:12:17 by sdeppe           ###   ########.fr       */
+/*   Updated: 2025/10/15 03:13:18 by sdeppe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_isalnum(int c)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
+	if (ft_isdigit(c) || ft_isalpha(c))
+		return (1 << 3);
 	return (0);
 }

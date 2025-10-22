@@ -6,9 +6,15 @@
 /*   By: sdeppe <sdeppe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 13:50:06 by sdeppe            #+#    #+#             */
-/*   Updated: 2025/10/12 13:50:12 by sdeppe           ###   ########.fr       */
+/*   Updated: 2025/10/17 00:47:40 by sdeppe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-int ft_toupper(int c);
+int	ft_toupper(int c)
+{
+	if (c >= 'a' && c <= 'z')
+		return (c ^ 0x20);
+	return (c);
+}
