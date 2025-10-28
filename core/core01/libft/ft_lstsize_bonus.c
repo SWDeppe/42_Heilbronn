@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdeppe <sdeppe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/28 01:47:11 by sdeppe            #+#    #+#             */
-/*   Updated: 2025/10/28 23:34:34 by sdeppe           ###   ########.fr       */
+/*   Created: 2025/10/28 05:00:29 by sdeppe            #+#    #+#             */
+/*   Updated: 2025/10/28 23:31:22 by sdeppe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_lstsize(t_list *lst)
 {
-	write(fd, s, ft_strlen(s));
+	t_list	*current;
+	int		i;
+
+	current = lst;
+	i = 1;
+	if (!lst)
+		return (0);
+	while (current->next)
+	{
+		current = current->next;
+		i++;
+	}
+	return (i);
 }

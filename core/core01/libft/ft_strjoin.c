@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdeppe <sdeppe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/28 01:47:11 by sdeppe            #+#    #+#             */
-/*   Updated: 2025/10/28 23:34:34 by sdeppe           ###   ########.fr       */
+/*   Created: 2025/10/23 23:37:24 by sdeppe            #+#    #+#             */
+/*   Updated: 2025/10/24 21:43:33 by sdeppe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	write(fd, s, ft_strlen(s));
+	size_t	i;
+	char	*res;
+
+	res = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	i = ft_strlen(s1) + ft_strlen(s2) + 1;
+	if (res == NULL)
+		return (NULL);
+	res[i] = '\0';
+	while (i-- > 0)
+	{
+		if (i < ft_strlen(s1))
+			res[i] = s1[i];
+		else
+			res[i] = s2[i - ft_strlen(s1)];
+	}
+	return (res);
 }
