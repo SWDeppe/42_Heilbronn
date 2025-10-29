@@ -6,7 +6,7 @@
 /*   By: sdeppe <sdeppe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 21:45:26 by sdeppe            #+#    #+#             */
-/*   Updated: 2025/10/27 21:47:25 by sdeppe           ###   ########.fr       */
+/*   Updated: 2025/10/29 03:07:33 by sdeppe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ static char	**assigne_and_retrun(int *v, char **res, const char *s, const int b)
 		if ((s[v[b + 1]] == '\0' || s[v[b + 1]] == v[b + 4])
 			&& s[v[b + 1] - 1] != v[b + 4] && v[b + 1] != 0)
 		{
-			v[b + 2] = 0;
-			while ((s[v[b + 1] - v[b + 2]++ - 1] != v[b + 4]
-					&& s[v[b + 1] - v[b + 2]] != '\0'))
-				v[v[b + 5] - 1] = v[b + 1] - v[b + 2] - 1;
+			v[b + 2] = 1;
+			while (v[b + 1] - v[b + 2] >= 0
+				&& s[v[b + 1] - v[b + 2]++] != v[b + 4])
+				v[v[b + 5] - 1] = v[b + 1] - v[b + 2];
 			v[v[b + 6] - 1] = v[b + 1] - 1;
 			res[v[b + 5] - 1] = malloc(v[v[b + 6] - 1] - v[v[b + 5] - 1] + 1);
 			if (res[v[b + 5] - 1] == NULL || v[b + 6]-- == v[b + 5]--)
@@ -94,6 +94,7 @@ char	**ft_split(char const *s, char c)
 // 	beg = 0;
 // 	end = 0;
 // 	j = 0;
+// 
 // 	while (s[i++])
 // 		if ((i == 0 || s[i - 1] != c) && (s[i] == c || s[i] == '\0'))
 // 			beg++;

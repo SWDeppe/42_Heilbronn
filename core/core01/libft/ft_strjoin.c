@@ -6,7 +6,7 @@
 /*   By: sdeppe <sdeppe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 23:37:24 by sdeppe            #+#    #+#             */
-/*   Updated: 2025/10/24 21:43:33 by sdeppe           ###   ########.fr       */
+/*   Updated: 2025/10/29 03:09:42 by sdeppe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*res;
 
 	res = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	i = ft_strlen(s1) + ft_strlen(s2) + 1;
+	i = ft_strlen(s1) + ft_strlen(s2);
 	if (res == NULL)
 		return (NULL);
 	res[i] = '\0';
