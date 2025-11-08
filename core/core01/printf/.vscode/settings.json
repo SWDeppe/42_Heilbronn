@@ -1,0 +1,13 @@
+{
+	"files.associations": {
+		"cmath": "c",
+		"compare": "c",
+		"concepts": "c",
+		"cstddef": "c",
+		"exception": "c",
+		"type_traits": "c",
+		"limits": "c",
+		"typeinfo": "c"
+	},
+	"C_Cpp.errorSquiggles": "disabled"
+}
