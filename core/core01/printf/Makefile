@@ -1,66 +1,67 @@
 CC = cc
-CFLAGS += -Wall -Werror -Wextra
-LIB_FLAGS = -lft -Llibft/ -Ilibft/libft.h
+CFLAGS += -Wall -Werror -Wextra -g #TODO -> remove -g
 
+LIBFT = libft.a
 NAME = libftprintf.a
 
+LIBFT_ROOT = ./libft/
 
-RAW_NAMES = printf
+
+#******************************    MENDATORY   ********************************#
+RAW_NAMES = printf			\
+			parser			\
+			renderer		\
+			render_nums		\
+			render_strings	\
 
 RAW_HEADER_NAMES = printf
 
-RAW_BONUS_NAMES = 
+SOURCE_ROOT = ./srcs/
+SOURCE_FILES = $(addprefix $(SOURCE_ROOT), $(RAW_NAMES:%=ft_%.c)) 
 
-RAW_BONUS_HEADER_NAMES = 
+OBJECT_ROOT = ./objs/
+OBJECT_FILES = $(addprefix $(OBJECT_ROOT), $(RAW_NAMES:%=ft_%.o))
 
-HEADER_ROOT = ./headers
-HEADER_FILES = $(addprefix $(SOURCE_ROOT), $(HEADER_NAMES:%=ft_%.h)) 
-
-BONUS_HEADER_ROOT = ./bonus/headers
-BONUS_HEADER_FILES = $(addprefix $(SOURCE_ROOT), $(HEADER_NAMES:%=ft_%.h)) 
-
-SOURCE_ROOT = ./srcs
-SOURCE_FILES = $(addprefix $(SOURCE_ROOT), $(FUNCTION_NAMES:%=ft_%.c)) 
+HEADER_ROOT_AND_FLAG = -I./headers/
+# HEADER_FILES = $(addprefix $(HEADER_ROOT_AND_FLAG), $(RAW_HEADER_NAMES:%=ft_%.h))
 
 
-OBJECT_ROOT = ./objs
-OBJECT_FILES = $(addprefix $(OBJECT_ROOT), $(FUNCTION_NAMES:%=ft_%.o))
+#******************************     BONUS      ********************************#
+# RAW_BONUS_NAMES = 
 
+# RAW_BONUS_HEADER_NAMES = 
 
-BONUS_SOURCE_ROOT = ./bonus/srcs
-BONUS_SOURCE_FILES = $(addprefix $(BONUS_SOURCE_ROOT), $(BONUS_FUNCTION_NAMES:%=ft_%_bonus.c))
+# BONUS_SOURCE_ROOT = ./bonus/srcs/
+# BONUS_SOURCE_FILES = $(addprefix $(BONUS_SOURCE_ROOT), $(RAW_BONUS_NAMES:%=ft_%_bonus.c))
 
+# BONUS_OBJECT_ROOT = ./bonus/objs/
+# BONUS_OBJECT_FILES = $(addprefix $(BONUS_OBJECT_ROOT), $(RAW_BONUS_NAMES:%=ft_%_bonus.o))
 
-BONUS_OBJECT_ROOT = ./bonus/objs
-BONUS_OBJECT_FILES = $(addprefix $(BONUS_SOURCE_ROOT), $(BONUS_FUNCTION_NAMES:%=ft_%_bonus.o))
-
+# BONUS_HEADER_ROOT_AND_FLAG = -I./bonus/headers/
+# BONUS_HEADER_FILES = $(addprefix $(SOURCE_ROOT), $(RAW_BONUS_HEADER_NAMES:%=ft_%.h))
 
 
 all: $(NAME)
 
 re:	fclean | $(NAME)
 
-$(NAME): lib | $(OBJECT_FILES)
-	ar crs $@ $^
-	$(MAKE) -C libft/ fclean
+$(NAME): $(OBJECT_FILES)
+	$(MAKE) -C $(LIBFT_ROOT) re
+	cp $(LIBFT_ROOT)libft.a $@
+	ar rs $@ $^
 
 $(OBJECT_ROOT)%.o: $(SOURCE_ROOT)%.c
-	$(CC) -c $^  $(CFLAGS) -o $@ -I$(HEADER_FILES) $(LIB_FLAGS)
+	$(CC) -c $<  $(CFLAGS) -o $@ $(HEADER_ROOT_AND_FLAG) -I$(LIBFT_ROOT)
 
-$(BONUS_OBJECT_ROOT)%_bonus.o: $(BONUS_SOURCE_ROOT)%_bonus.c
-	$(CC) -c $^  $(CFLAGS) -o $@ -I$(BONUS_HEADER_FILES) $(LIB_FLAGS)
+$(BONUS_OBJECT_ROOT)%_bonus.o:$(BONUS_SOURCE_ROOT)%_bonus.c
+	$(CC) -c $<  $(CFLAGS) -o $@ $(BONUS_HEADER_ROOT_AND_FLAG) -I$(LIBFT_ROOT) 
 
 fclean: clean
 	rm -f $(NAME)
+	$(MAKE) -C $(LIBFT_ROOT) fclean
 
 clean: 
 	rm -f $(OBJECT_FILES) $(BONUS_OBJECT_FILES)
+	$(MAKE) -C $(LIBFT_ROOT) clean
 
-bonus: $(BONUS_OBJECT_FILES) $(OBJECT_FILES)
-	ar crs $(NAME) $^
-
-lib:
-	$(MAKE) -C libft/ all
-	$(MAKE) -C libft/ clean
-
-# TODO fclean after compiling
+bonus: $(NAME)
