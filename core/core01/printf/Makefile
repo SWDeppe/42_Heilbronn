@@ -19,7 +19,7 @@ RAW_HEADER_NAMES = printf
 SOURCE_ROOT = ./srcs/
 SOURCE_FILES = $(addprefix $(SOURCE_ROOT), $(RAW_NAMES:%=ft_%.c)) 
 
-OBJECT_ROOT = ./objs/
+OBJECT_ROOT = ./
 OBJECT_FILES = $(addprefix $(OBJECT_ROOT), $(RAW_NAMES:%=ft_%.o))
 
 HEADER_ROOT_AND_FLAG = -I./headers/
