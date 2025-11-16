@@ -39,7 +39,8 @@ FT_FUNCTION_NAMES = 	strjoin		\
 						putchar_fd	\
 						putstr_fd	\
 						putendl_fd	\
-						putnbr_fd
+						putnbr_fd	\
+						itoa_type_base	\
 
 FT_BONUS_FUNCTION_NAMES = 	lstnew		\
 							lstadd_front \
@@ -56,16 +57,15 @@ FUNCTION_NAMES = $(LIBC_FUNCTION_NAMES) $(FT_FUNCTION_NAMES)
 SOURCE_ROOT = ./
 SOURCE_FILES = $(addprefix $(SOURCE_ROOT), $(FUNCTION_NAMES:%=ft_%.c)) 
 
-
 OBJECT_ROOT = ./
 OBJECT_FILES = $(addprefix $(OBJECT_ROOT), $(FUNCTION_NAMES:%=ft_%.o))
-
 
 BONUS_SOURCE_ROOT = ./
 BONUS_SOURCE_FILES = $(addprefix $(BONUS_SOURCE_ROOT), $(FT_BONUS_FUNCTION_NAMES:%=ft_%_bonus.c))
 
 BONUS_OBJECT_ROOT = ./
-BONUS_OBJECT_FILES = $(addprefix $(BONUS_SOURCE_ROOT), $(FT_BONUS_FUNCTION_NAMES:%=ft_%_bonus.o))
+LIBFT_BONUS_OBJECT_FILES = $(addprefix $(BONUS_OBJECT_ROOT), $(FT_BONUS_FUNCTION_NAMES:%=ft_%_bonus.o))
+
 
 
 all: $(NAME)

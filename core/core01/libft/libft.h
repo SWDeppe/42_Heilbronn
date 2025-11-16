@@ -50,9 +50,16 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+char	*ft_itoa_type_base(long long int nbr, char *base, char type);
 
-/////////////////////////bonus part///////////////////////////
+/******************************   itoa types   ********************************/
 
+# define _TYPE_INT_ 1
+# define _TYPE_UINT_ 2
+# define _TYPE_LINT_ 3
+# define _TYPE_ULINT_ 4
+
+/******************************   bonus part   ********************************/
 typedef struct s_list
 {
 	void			*content;
